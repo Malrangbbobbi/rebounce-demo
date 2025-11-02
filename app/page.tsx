@@ -1,7 +1,7 @@
 // app/page.tsx
 "use client";
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants, easeOut } from "framer-motion";
 import {
   computeS_v2,
   computeL_v2,
@@ -20,32 +20,32 @@ import {
 } from "recharts";
 
 // 애니메이션 설정
-const list = {
+const list: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.1 } },
 };
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 12 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.35, ease: easeOut } },
 };
 
 type QuizQ = { id: string; question: string; choices: string[]; answer_index?: number };
 
 export default function Demo() {
   // ===== S (Likert 1~5, 쉬운 문항) =====
-  const [S1, setS1] = useState(3); // “요즘은 꼭 필요한 데에만 돈을 쓰려고 노력하고 있다.”
-  const [S2, setS2] = useState(3); // “저축을 하면 마음이 든든하고, 미래가 조금 더 편해질 것 같다.”
-  const [S3, setS3] = useState(3); // “돈을 굴리거나 재테크를 할 때, 불안해도 ‘잘 해볼 수 있다’는 마음이 든다.”
-  const [S4, setS4] = useState(3); // “앞으로 돈을 어떻게 쓸지, 대략적인 계획이나 목표가 있다.”
+  const [S1, setS1] = useState(3);
+  const [S2, setS2] = useState(3);
+  const [S3, setS3] = useState(3);
+  const [S4, setS4] = useState(3);
 
   // ===== B (토글: 직접 입력 ↔ Likert) =====
   const [useManualB1, setUseManualB1] = useState(true);
   const [useManualB2, setUseManualB2] = useState(true);
   const [useManualB3, setUseManualB3] = useState(true);
 
-  const [B1Likert, setB1Likert] = useState(3); // “이번 달 목표한 만큼 저축했다.”
-  const [B2Likert, setB2Likert] = useState(3); // “이번 달엔 계획했던 예산 안에서 잘 썼다.”
-  const [B3Likert, setB3Likert] = useState(3); // “최근 몇 달 동안 꾸준히 같은 방식으로 돈을 관리하거나 투자하고 있다.”
+  const [B1Likert, setB1Likert] = useState(3);
+  const [B2Likert, setB2Likert] = useState(3);
+  const [B3Likert, setB3Likert] = useState(3);
 
   const [raw, setRaw] = useState<BRaw>({
     saveActual: 300000, saveGoal: 500000,

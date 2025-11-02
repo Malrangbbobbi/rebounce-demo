@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 재사용 유틸 */
+.input{
+  @apply border border-zinc-700 rounded-lg px-3 py-2 bg-white/5 focus:outline-none focus:ring-2 focus:ring-zinc-600;
+}
+.stat{
+  @apply border border-zinc-800 rounded-xl p-3 text-center bg-white/5;
+}
+
+html{ color-scheme: dark; }
+body{ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
